@@ -1,5 +1,13 @@
-import readlineSync from 'readline-sync';
-import userName from './index.js';
+// import readlineSync from 'readline-sync';
+import {
+  userName,
+  askUserAnswer,
+  isCorrectUserAnswer,
+  randomNumber,
+  question,
+  feedback,
+  // playTheGame,
+} from './index.js';
 
 console.log(`Hello, ${userName}!`);
 
@@ -10,47 +18,29 @@ console.log(gameRules);
 // Check if the number even
 const isEven = (num) => ((num % 2 === 0) ? 'yes' : 'no');
 
-// *** Check whether the answer is correct
-const isCorrectAnswer = (userAnswer, correctAnswer) => (userAnswer === correctAnswer ? 'correct' : 'wrong');
-
-// *** Random number
-const displayNumber = () => {
-  const number = Math.floor(Math.random() * 100);
-  return number;
-};
-
 // the game
 const game = () => {
   // stick to the number
-  const number = displayNumber();
+  const number = randomNumber();
 
-  // *** Display the question
-  const question = `Question: ${number}`;
-  console.log(question);
+  // Display the question
+  question(number);
 
-  // *** Ask a user their answer
-  const userAnswer = readlineSync.question('Answer: ');
+  // Ask a user for their answer
+  const userAnswer = askUserAnswer();
 
   // Check user's answer and display result
   const answer = isEven(number);
 
-  // *** Feedback
-  const correct = `Well done, ${userName}!`;
-  const wrong = `Your answer "${userAnswer}" is wrong. Correct answer is "${answer}"\nLet's try again, ${userName}!`;
+  // check if user's answer's correct
+  const result = isCorrectUserAnswer(userAnswer, answer);
 
-  // *** check if user's answer's correct
-  const result = isCorrectAnswer(userAnswer, answer);
-
-  // *** display feedback
-  if (result === 'correct') {
-    console.log(correct);
-  } else {
-    console.log(wrong);
-  }
+  feedback(userName, userAnswer, answer);
 
   return result;
 };
 
+// playTheGame(game);
 // *** Make sure the user answered correctly 3 Qs in a raw before the game ends
 const playTheGame = () => {
   let counter = 0;

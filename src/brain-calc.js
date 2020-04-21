@@ -1,5 +1,13 @@
-import readlineSync from 'readline-sync';
-import userName from './index.js';
+// import readlineSync from 'readline-sync';
+import {
+  askUserAnswer,
+  userName,
+  isCorrectUserAnswer,
+  randomNumber,
+  question,
+  feedback,
+  // playTheGame,
+} from './index.js';
 
 // Greet the user
 console.log(`Hello, ${userName}!`);
@@ -7,12 +15,6 @@ console.log(`Hello, ${userName}!`);
 // Explain rules of the game
 const gameRules = 'Write the result of the expression?';
 console.log(gameRules);
-
-// Random number
-const displayNumber = () => {
-  const number = Math.floor(Math.random() * 100);
-  return number;
-};
 
 // Array of math operators
 const mathOperators = ['+', '-', '*'];
@@ -32,43 +34,32 @@ const count = (str) => {
   return result;
 };
 
-// *** check userAnswer
-const isCorrect = (userAnswer, correctAnswer) => (userAnswer === correctAnswer ? 'correct' : 'wrong');
-
 // the game
 const game = () => {
-  const num1 = displayNumber();
-  const num2 = displayNumber();
+  const num1 = randomNumber();
+  const num2 = randomNumber();
   const sign = operation(mathOperators);
   const expression = `${num1} ${sign} ${num2}`;
 
-  // *** Display the question
-  const question = `Question: ${expression}`;
-  console.log(question);
+  // Display the question
+  question(expression);
 
-  // *** Ask a user their answer
-  const userAnswer = readlineSync.question('Answer: ');
+  // Ask a user for their answer
+  const userAnswer = askUserAnswer();
 
   // check if userAnswer is correct
   const answer = count(expression);
 
-  // *** give user a feedback
-  const correct = `Well done, ${userName}!`;
-  const wrong = `Your answer "${userAnswer}" is wrong. Correct answer is "${answer}"\nLet's try again, ${userName}!`;
+  // check if user's answer's correct
+  const result = isCorrectUserAnswer(userAnswer, answer);
 
-  // *** check if user's answer's correct
-  const result = isCorrect(userAnswer, answer);
-
-  // *** display feedback
-  if (result === 'correct') {
-    console.log(correct);
-  } else {
-    console.log(wrong);
-  }
+  // give a feedback
+  feedback(userName, userAnswer, answer);
 
   return result;
 };
 
+// playTheGame(game),
 // *** Make sure the user answered correctly 3 Qs in a raw before the game ends
 const playTheGame = () => {
   let counter = 0;
