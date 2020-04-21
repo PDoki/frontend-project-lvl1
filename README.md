@@ -6,3 +6,7 @@
 
 # brain-calc game
 <img src="images/brain-calc.gif" width=600>
+
+# brain-gcd game
+<img src="images/brain-gcd.gif" width=600>
+
