@@ -18,7 +18,7 @@ console.log(gameRules);
 // Create an arr of numberes
 const createProgression = () => {
   const firstNumber = randomNumber();
-  const step = randomNumber(10);
+  const step = randomNumber(10) + 1;
   const lastIndexOFArr = 9;
   const arrOfProgression = [firstNumber];
   for (let i = 0; i < lastIndexOFArr; i += 1) {
