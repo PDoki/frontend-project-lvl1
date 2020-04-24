@@ -38,20 +38,18 @@ export const feedback = (nameOfUser, userAnswer, correctAnswer) => {
   }
 };
 
-// *** Make sure the user answered correctly 3 Qs in a raw before the game ends
-// export const playTheGame = (func) => {
-//   let counter = 0;
-//   while (counter < 3) {
-//     // TO FIX: when counter = 3 it ends up with a TypeError: func() is not a function
-//     const result = func();
-//     console.log('result = ', result);
-//     if (result !== 'correct') {
-//       counter = 3;
-//     } else {
-//       counter += 1;
-//       if (counter === 3) {
-//         console.log(`Congratulations, ${userName}! You won this game!`);
-//       }
-//     }
-//   }
-// };
+// Make sure the user answered correctly 3 Qs in a raw before the game ends
+export const playTheGame = (func) => {
+  let counter = 0;
+  while (counter < 3) {
+    const result = func();
+    if (result !== 'correct') {
+      counter = 3;
+    } else {
+      counter += 1;
+      if (counter === 3) {
+        console.log(`Congratulations, ${userName}! You won this game!`);
+      }
+    }
+  }
+};

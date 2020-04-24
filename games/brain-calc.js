@@ -5,8 +5,7 @@ import {
   randomNumber,
   question,
   feedback,
-  // playTheGame,
-} from './index.js';
+} from '../src/index.js';
 
 // Greet the user
 console.log(`Hello, ${userName}!`);
@@ -65,21 +64,5 @@ const game = () => {
   return result;
 };
 
-// playTheGame(game),
-// *** Make sure the user answered correctly 3 Qs in a raw before the game ends
-const playTheGame = () => {
-  let counter = 0;
-  while (counter < 3) {
-    const result = game();
-    if (result !== 'correct') {
-      counter = 3;
-    } else {
-      counter += 1;
-      if (counter === 3) {
-        console.log(`Congratulations, ${userName}! You won this game!`);
-      }
-    }
-  }
-};
 
-export default playTheGame;
+export default game;
