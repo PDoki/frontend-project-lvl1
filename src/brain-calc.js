@@ -1,4 +1,3 @@
-// import readlineSync from 'readline-sync';
 import {
   askUserAnswer,
   userName,
@@ -27,11 +26,18 @@ const operation = (arr) => {
 };
 
 // solve expression
-const count = (str) => {
-  // eslint-disable-next-line no-eval
-  const answer = eval(str);
-  const result = String(answer);
-  return result;
+const count = (number1, number2, mathOperation) => {
+  let result;
+  if (mathOperation === '+') {
+    result = number1 + number2;
+  }
+  if (mathOperation === '-') {
+    result = number1 - number2;
+  }
+  if (mathOperation === '*') {
+    result = number1 * number2;
+  }
+  return String(result);
 };
 
 // the game
@@ -48,7 +54,7 @@ const game = () => {
   const userAnswer = askUserAnswer();
 
   // check if userAnswer is correct
-  const answer = count(expression);
+  const answer = count(num1, num2, sign);
 
   // check if user's answer's correct
   const result = isCorrectUserAnswer(userAnswer, answer);

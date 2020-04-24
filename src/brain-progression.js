@@ -1,6 +1,6 @@
 import {
-  userName,
   askUserAnswer,
+  userName,
   isCorrectUserAnswer,
   randomNumber,
   question,
@@ -8,40 +8,41 @@ import {
   // playTheGame,
 } from './index.js';
 
-
+// Greet the user
 console.log(`Hello, ${userName}!`);
 
-// Explain rules to the user
-const gameRules = 'Find the greatest common divisor of given numbers.';
+// Explain rules of the game
+const gameRules = 'What number is missing in the progression?';
 console.log(gameRules);
 
-// Calculate the greatest divisor
-const getGreaterDivisor = (num1, num2) => {
-  let a = num1;
-  let b = num2;
-  while (a !== b) {
-    if (a > b) {
-      a -= b;
-    } else {
-      b -= a;
-    }
+// Create an arr of numberes
+const createProgression = () => {
+  const firstNumber = randomNumber();
+  const step = randomNumber(10);
+  const lastIndexOFArr = 9;
+  const arrOfProgression = [firstNumber];
+  for (let i = 0; i < lastIndexOFArr; i += 1) {
+    arrOfProgression[i + 1] = arrOfProgression[i] + step;
   }
-  return a;
+  return arrOfProgression;
 };
+
+// save the number
+const missingNumber = (num) => String(num);
 
 // the game
 const game = () => {
-  const num1 = randomNumber();
-  const num2 = randomNumber();
-  const task = `${num1}, ${num2}`;
+  const arrToDisplay = createProgression();
+  const dotsInsteadOfValue = '..';
+  const valToHide = randomNumber(10);
+  const answer = missingNumber(arrToDisplay[valToHide]);
+  arrToDisplay[valToHide] = dotsInsteadOfValue;
+  const task = arrToDisplay.join(' ');
   // Display the question
   question(task);
 
   // Ask a user for their answer
   const userAnswer = askUserAnswer();
-
-  // check if userAnswer is correct
-  const answer = String(getGreaterDivisor(num1, num2));
 
   // check if user's answer's correct
   const result = isCorrectUserAnswer(userAnswer, answer);

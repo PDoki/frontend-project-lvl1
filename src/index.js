@@ -1,5 +1,6 @@
 import readlineSync from 'readline-sync';
 
+// Greet and ask user name
 export const userName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name, please? ');
 
 // Display the question
@@ -17,9 +18,9 @@ export const askUserAnswer = () => {
 // check userAnswer
 export const isCorrectUserAnswer = (userAnswer, correctAnswer) => (userAnswer === correctAnswer ? 'correct' : 'wrong');
 
-// get random number
-export const randomNumber = () => {
-  const number = Math.floor(Math.random() * 100);
+// get random number 0 - 100
+export const randomNumber = (i = 100) => {
+  const number = Math.floor(Math.random() * i);
   return number;
 };
 
