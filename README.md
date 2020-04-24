@@ -10,3 +10,6 @@
 # brain-gcd game
 <img src="images/brain-gcd.gif" width=600>
 
+# brain-progression game
+<img src="images/brain-progression.gif" width=600>
+
