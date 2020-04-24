@@ -13,3 +13,5 @@
 # brain-progression game
 <img src="images/brain-progression.gif" width=600>
 
+# brain-prime game
+<img src="images/brain-prime.gif" width=600>
