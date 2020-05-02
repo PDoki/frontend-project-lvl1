@@ -1,4 +1,4 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8135c00d07c1e89ee1a3/maintainability)](https://codeclimate.com/github/PDoki/frontend-project-lvl1/maintainability)
 ![](https://github.com/PDoki/frontend-project-lvl1/workflows/frontend-project-js/badge.svg)
 
 # brain-even game
