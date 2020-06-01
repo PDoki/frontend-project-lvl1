@@ -1,20 +1,12 @@
 import {
-  userName,
-  askUserAnswer,
   isCorrectUserAnswer,
   randomNumber,
-  question,
-  feedback,
+  playTheGame,
 } from '../src/index.js';
 
-// Greet the user
-console.log(`Hello, ${userName}!`);
-
-// Explain rules to the user
+// the rules of the game
 const gameRules = 'Find the greatest common divisor of given numbers.';
-console.log(gameRules);
 
-// Calculate the greatest divisor
 const getGreaterDivisor = (num1, num2) => {
   let a = num1;
   let b = num2;
@@ -28,27 +20,22 @@ const getGreaterDivisor = (num1, num2) => {
   return a;
 };
 
-// the game
-const game = () => {
+const taskGenerator = () => {
   const num1 = randomNumber();
   const num2 = randomNumber();
   const task = `${num1}, ${num2}`;
-  // Display the question
-  question(task);
 
-  // Ask a user for their answer
-  const userAnswer = askUserAnswer();
+  const rightAnswer = String(getGreaterDivisor(num1, num2));
 
-  // check if userAnswer is correct
-  const answer = String(getGreaterDivisor(num1, num2));
+  const isAnswerRight = (userAnswer) => isCorrectUserAnswer(userAnswer, rightAnswer);
 
-  // check if user's answer's correct
-  const result = isCorrectUserAnswer(userAnswer, answer);
-
-  // give a feedback
-  feedback(userName, userAnswer, answer);
-
-  return result;
+  return {
+    task,
+    rightAnswer,
+    isAnswerRight,
+  };
 };
 
-export default game;
+const startGame = () => playTheGame(taskGenerator, gameRules);
+
+export default startGame;

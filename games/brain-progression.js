@@ -1,55 +1,46 @@
 import {
-  askUserAnswer,
-  userName,
   isCorrectUserAnswer,
   randomNumber,
-  question,
-  feedback,
+  playTheGame,
 } from '../src/index.js';
 
-// Greet the user
-console.log(`Hello, ${userName}!`);
-
-// Explain rules of the game
+// the rules of the game
 const gameRules = 'What number is missing in the progression?';
-console.log(gameRules);
 
-// Create an arr of numberes
+
 const createProgression = () => {
-  const firstNumber = randomNumber();
-  const step = randomNumber(10) + 1;
+  const arr = [];
   const lastIndexOFArr = 9;
-  const arrOfProgression = [firstNumber];
-  for (let i = 0; i < lastIndexOFArr; i += 1) {
-    arrOfProgression[i + 1] = arrOfProgression[i] + step;
+  const start = randomNumber();
+  const step = randomNumber();
+
+  for (let i = 0; i <= lastIndexOFArr; i += 1) {
+    const num = start + step * i;
+    arr.push(num);
   }
-  return arrOfProgression;
+
+  return arr;
 };
 
-// save the number
 const missingNumber = (num) => String(num);
 
-// the game
-const game = () => {
+const taskGenerator = () => {
   const arrToDisplay = createProgression();
+
   const dotsInsteadOfValue = '..';
-  const valToHide = randomNumber(10);
-  const answer = missingNumber(arrToDisplay[valToHide]);
+  const valToHide = randomNumber(0, 9);
+  const rightAnswer = missingNumber(arrToDisplay[valToHide]);
   arrToDisplay[valToHide] = dotsInsteadOfValue;
   const task = arrToDisplay.join(' ');
-  // Display the question
-  question(task);
 
-  // Ask a user for their answer
-  const userAnswer = askUserAnswer();
-
-  // check if user's answer's correct
-  const result = isCorrectUserAnswer(userAnswer, answer);
-
-  // give a feedback
-  feedback(userName, userAnswer, answer);
-
-  return result;
+  const isAnswerRight = (userAnswer) => isCorrectUserAnswer(userAnswer, rightAnswer);
+  return {
+    task,
+    rightAnswer,
+    isAnswerRight,
+  };
 };
 
-export default game;
+const startGame = () => playTheGame(taskGenerator, gameRules);
+
+export default startGame;
