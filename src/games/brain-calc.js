@@ -1,21 +1,18 @@
-import {
-  isCorrectUserAnswer,
-  randomNumber,
-  playTheGame,
-} from '../src/index.js';
+import playTheGame from '../index.js';
+import randomNumber from '../random-number.js';
 
 // the rules of the game
-const gameRules = 'Write the result of the expression?';
+const gameRule = 'Write the result of the expression?';
 
 const mathOperators = ['+', '-', '*'];
 
-const operation = (arr) => {
-  const len = arr.length;
-  const sign = Math.floor(Math.random() * len);
+const getOperation = (arr) => {
+  const len = arr.length - 1;
+  const sign = randomNumber(0, len);
   return arr[sign];
 };
 
-const count = (number1, number2, mathOperation) => {
+const calculateExpression = (number1, number2, mathOperation) => {
   let result;
   switch (mathOperation) {
     case '+': result = number1 + number2;
@@ -32,19 +29,17 @@ const count = (number1, number2, mathOperation) => {
 const taskGenerator = () => {
   const num1 = randomNumber();
   const num2 = randomNumber();
-  const sign = operation(mathOperators);
+  const sign = getOperation(mathOperators);
   const task = `${num1} ${sign} ${num2}`;
 
-  const rightAnswer = count(num1, num2, sign);
+  const rightAnswer = calculateExpression(num1, num2, sign);
 
-  const isAnswerRight = (userAnswer) => isCorrectUserAnswer(userAnswer, rightAnswer);
   return {
     task,
     rightAnswer,
-    isAnswerRight,
   };
 };
 
-const startGame = () => playTheGame(taskGenerator, gameRules);
+const startGame = () => playTheGame(taskGenerator, gameRule);
 
 export default startGame;
