@@ -1,34 +1,31 @@
 import playTheGame from '../index.js';
-import randomNumber from '../random-number.js';
+import getRandomNumber from '../random-number.js';
 
 // the rules of the game
 const gameRule = 'What number is missing in the progression?';
 
 const createProgression = (firstNum, diff) => {
-  const arr = [];
-  const lastIndexOFArr = 9;
+  const progression = [];
+  const progressionLength = 10;
 
-  for (let i = 0; i <= lastIndexOFArr; i += 1) {
+  for (let i = 0; i < progressionLength; i += 1) {
     const num = firstNum + diff * i;
-    arr.push(num);
+    progression.push(num);
   }
 
-  return arr;
+  return progression;
 };
 
-const missingNumber = (num) => String(num);
-
-const taskGenerator = () => {
-  const start = randomNumber();
-  const step = randomNumber();
-  const arrToDisplay = createProgression(start, step);
+const generateTask = () => {
+  const start = getRandomNumber();
+  const step = getRandomNumber();
+  const progressionToDisplay = createProgression(start, step);
 
   const dotsInsteadOfValue = '..';
-  const arrToDisplayLength = arrToDisplay.length - 1;
-  const valToHide = randomNumber(0, arrToDisplayLength);
-  const rightAnswer = missingNumber(arrToDisplay[valToHide]);
-  arrToDisplay[valToHide] = dotsInsteadOfValue;
-  const task = arrToDisplay.join(' ');
+  const numToHide = getRandomNumber(0, (progressionToDisplay.length - 1));
+  const rightAnswer = progressionToDisplay[numToHide].toString();
+  progressionToDisplay[numToHide] = dotsInsteadOfValue;
+  const task = progressionToDisplay.join(' ');
 
   return {
     task,
@@ -36,6 +33,6 @@ const taskGenerator = () => {
   };
 };
 
-const startGame = () => playTheGame(taskGenerator, gameRule);
+const startGame = () => playTheGame(generateTask, gameRule);
 
 export default startGame;

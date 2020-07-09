@@ -1,15 +1,15 @@
 import playTheGame from '../index.js';
-import randomNumber from '../random-number.js';
+import getRandomNumber from '../random-number.js';
 
 // the rules of the game
 const gameRule = 'Write the result of the expression?';
 
 const mathOperators = ['+', '-', '*'];
 
-const getOperation = (arr) => {
-  const len = arr.length - 1;
-  const sign = randomNumber(0, len);
-  return arr[sign];
+const getOperation = (arrOfMathsOperators) => {
+  const numberOfMathsOperators = arrOfMathsOperators.length - 1;
+  const mathsOperatorIndex = getRandomNumber(0, numberOfMathsOperators);
+  return arrOfMathsOperators[mathsOperatorIndex];
 };
 
 const calculateExpression = (number1, number2, mathOperation) => {
@@ -21,14 +21,14 @@ const calculateExpression = (number1, number2, mathOperation) => {
       break;
     case '*': result = number1 * number2;
       break;
-    default: result = number1 + number2;
+    default: return null;
   }
   return String(result);
 };
 
-const taskGenerator = () => {
-  const num1 = randomNumber();
-  const num2 = randomNumber();
+const generateTask = () => {
+  const num1 = getRandomNumber();
+  const num2 = getRandomNumber();
   const sign = getOperation(mathOperators);
   const task = `${num1} ${sign} ${num2}`;
 
@@ -40,6 +40,6 @@ const taskGenerator = () => {
   };
 };
 
-const startGame = () => playTheGame(taskGenerator, gameRule);
+const startGame = () => playTheGame(generateTask, gameRule);
 
 export default startGame;

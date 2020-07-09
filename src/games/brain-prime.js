@@ -1,5 +1,5 @@
 import playTheGame from '../index.js';
-import randomNumber from '../random-number.js';
+import getRandomNumber from '../random-number.js';
 
 // the rules of the game
 const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
@@ -17,8 +17,8 @@ const isPrime = (num) => {
   return true;
 };
 
-const taskGenerator = () => {
-  const task = randomNumber(0, 1000);
+const generateTask = () => {
+  const task = getRandomNumber(0, 1000);
   const rightAnswer = isPrime(task) ? 'yes' : 'no';
   return {
     task,
@@ -26,6 +26,6 @@ const taskGenerator = () => {
   };
 };
 
-const startGame = () => playTheGame(taskGenerator, gameRule);
+const startGame = () => playTheGame(generateTask, gameRule);
 
 export default startGame;

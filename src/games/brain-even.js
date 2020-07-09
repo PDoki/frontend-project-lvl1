@@ -1,5 +1,5 @@
 import playTheGame from '../index.js';
-import randomNumber from '../random-number.js';
+import getRandomNumber from '../random-number.js';
 
 // the rule of the game
 const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
@@ -8,8 +8,8 @@ const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
 // check whether the number is even
 const isEven = (num) => num % 2 === 0;
 
-const taskGenerator = () => {
-  const task = randomNumber();
+const generateTask = () => {
+  const task = getRandomNumber();
   const rightAnswer = isEven(task) ? 'yes' : 'no';
 
   return {
@@ -18,6 +18,6 @@ const taskGenerator = () => {
   };
 };
 
-const startGame = () => playTheGame(taskGenerator, gameRule);
+const startGame = () => playTheGame(generateTask, gameRule);
 
 export default startGame;
