@@ -40,15 +40,15 @@ const playTheGame = (taskGenerator, rule) => {
   // Make sure the game has 3 rounds and is over if user's wrong
   const numberOfRounds = 3;
   let counter = 0;
-
   while (counter < numberOfRounds) {
     const result = game(taskGenerator, userName);
     counter += 1;
     if (!result) {
-      return false;
+      return null;
     }
   }
   console.log(`Congratulations, ${userName}! You won this game!`);
+  return null;
 };
 
 export default playTheGame;
