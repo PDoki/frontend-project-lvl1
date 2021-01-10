@@ -29,7 +29,7 @@ const game = (generateTask, userName) => {
 
 const playTheGame = (taskGenerator, rule) => {
   // Greet a user
-  const greeting = 'Welcome to the Brain Games!'
+  const greeting = 'Welcome to the Brain Games!';
   console.log(greeting);
   const userName = readlineSync.question('May I have your name, please? ');
   console.log(`Hello ${userName}`);
