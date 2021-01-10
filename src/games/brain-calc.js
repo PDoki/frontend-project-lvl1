@@ -6,10 +6,10 @@ const gameRule = 'Write the result of the expression?';
 
 const mathOperators = ['+', '-', '*'];
 
-const getOperation = (arrOfMathsOperators) => {
-  const numberOfMathsOperators = arrOfMathsOperators.length - 1;
-  const mathsOperatorIndex = getRandomNumber(0, numberOfMathsOperators);
-  return arrOfMathsOperators[mathsOperatorIndex];
+const getOperation = (mathsOperators) => {
+  const lastIndexOfMathsOperators = mathsOperators.length - 1;
+  const mathsOperatorIndex = getRandomNumber(0, lastIndexOfMathsOperators);
+  return mathsOperators[mathsOperatorIndex];
 };
 
 const calculateExpression = (number1, number2, mathOperation) => {
@@ -23,7 +23,7 @@ const calculateExpression = (number1, number2, mathOperation) => {
       break;
     default: return null;
   }
-  return String(result);
+  return result;
 };
 
 const generateTask = () => {
@@ -32,7 +32,7 @@ const generateTask = () => {
   const sign = getOperation(mathOperators);
   const task = `${num1} ${sign} ${num2}`;
 
-  const rightAnswer = calculateExpression(num1, num2, sign);
+  const rightAnswer = calculateExpression(num1, num2, sign).toString();
 
   return {
     task,

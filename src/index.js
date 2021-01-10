@@ -2,7 +2,7 @@ import readlineSync from 'readline-sync';
 
 
 // Give user a feedback
-const feedback = (nameOfUser, userAnswer, correctAnswer, result) => {
+const giveUserFeedback = (nameOfUser, userAnswer, correctAnswer, result) => {
   const correct = `Well done, ${nameOfUser}!`;
   const wrong = `Your answer "${userAnswer}" is wrong. Correct answer is "${correctAnswer}".\nLet's try again, ${nameOfUser}!`;
 
@@ -16,22 +16,22 @@ const feedback = (nameOfUser, userAnswer, correctAnswer, result) => {
 // game progress
 const game = (generateTask, userName) => {
   const { task, rightAnswer } = generateTask();
-
   const question = `Question: ${task}`;
   console.log(question);
 
   const userAnswer = readlineSync.question('Answer: ');
-
   const result = (userAnswer === rightAnswer);
 
-  feedback(userName, userAnswer, rightAnswer, result);
+  giveUserFeedback(userName, userAnswer, rightAnswer, result);
 
   return result;
 };
 
 const playTheGame = (taskGenerator, rule) => {
   // Greet a user
-  const userName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name, please? ');
+  const greeting = 'Welcome to the Brain Games!'
+  console.log(greeting);
+  const userName = readlineSync.question('May I have your name, please? ');
   console.log(`Hello ${userName}`);
 
   // Display the rule of the game
